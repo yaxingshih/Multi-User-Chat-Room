@@ -1,0 +1,14 @@
+.chatlist {
+    grid-template-columns: 4.32fr 7.86fr;
+    align-items: center;
+    padding: 20px;
+    height: 100vh;
+}
+.chatlist__container{
+
+}
+.chatlist__title {
+    font-size: var(--h2-font-size);
+    color: var(--first-color);
+    font-weight: var(----weight-500);
+}
