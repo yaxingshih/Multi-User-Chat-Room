@@ -1,9 +1,10 @@
 import React from 'react';
-
+import { useUser } from '../context/UserContext';
 import ChatList from '../components/ChatList'
 import './chatListPage.css'
 
-const ChatListPage = ({ userId }) => {
+const ChatListPage = () => {
+  const { userId } = useUser();
   return (
     <main className="chatlist">
       <div className="">

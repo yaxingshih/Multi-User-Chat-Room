@@ -1,26 +1,61 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import { fetchRoomDetails } from '../api/api';
+import { fetchChatMsg } from '../api/api';
+import './chatRoomPage.css'
 const ChatRoomPage = ({ roomId }) => {
-  const [messages, setMessages] = useState([]);
+  const [roomDetails, setRoomDetails] = React.useState([]);
+  
+      const handleFetchRoomDetails = async () => {
+          try {
+          const data = await fetchRoomDetails(roomId);
+            setRoomDetails(data);
+          } catch (error) {
+              console.error('Error:', error);
+          }
+      };
+  
+      React.useEffect(() => {
+        handleFetchRoomDetails();
+      }, [roomId]);
+  
+    const [messages, setMessages] = React.useState([]);
 
-  useEffect(() => {
-
-    setMessages([
-      { id: 1, sender: "Alice", text: `Welcome to room ${roomId}!` },
-      { id: 2, sender: "Bob", text: "Hello!" },
-    ]);
-  }, [roomId]);
+    const handleFetchChatMsg = async () => {
+        try {
+        const data = await fetchChatMsg(roomId);
+        setMessages(data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+  
+      React.useEffect(() => {
+        handleFetchChatMsg();
+      }, [roomId]);
 
   return (
-    <div>
-      <h2>Chat Room {roomId}</h2>
-      <div style={{ padding: "1rem", borderBottom: "1px solid #ccc" }}>
-        {messages.map((msg) => (
-          <div key={msg.id}>
-            <strong>{msg.sender}:</strong> {msg.text}
+    <div className='chatRoom'>
+      <div>
+        {roomDetails.map((detal) => (
+          <div key={detal.partnerUID} className='chatRoom__title'>
+            <strong>{detal.partnerUID}</strong>
           </div>
         ))}
       </div>
+      <div style={{ padding: "0.14rem", borderBottom: "1px solid var(--border-color)" }}></div>
+        {messages.map((msg) => (
+          <div key={msg.MSGID}>
+            <strong>{msg.UID}:</strong> {msg.MSG}
+          </div>
+        ))}
+      {/* "MSGID", 
+        "GroupID", 
+        "DTM", 
+        "UID", 
+        "MSG", 
+        "CLASS", 
+        "FormattedDTM", 
+        "DT" */}
     </div>
   );
 };

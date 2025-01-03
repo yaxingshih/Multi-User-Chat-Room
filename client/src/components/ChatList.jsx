@@ -2,25 +2,24 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './chatList.css';
+import { fetchChatRooms } from '../api/api';
 
 const ChatList = ({userId}) => {
-    const [chatRooms, setChatRooms] = useState([]);
+    const [chatRooms, setChatRooms] = React.useState([]);
 
-    useEffect(() => {
-
-    const fetchChatRooms = async () => {
+    const handleFetchChatRooms = async () => {
         try {
-        const response = await axios.get(`http://localhost:3000/api/chatRooms/${userId}`);
-        setChatRooms(response.data);
-        console.log(response.data);
+        const data = await fetchChatRooms(userId);
+            setChatRooms(data);
         } catch (error) {
-        console.error('Error fetching chat rooms:', error);
+            console.error('Error:', error);
         }
     };
 
-    fetchChatRooms();
+    React.useEffect(() => {
+        handleFetchChatRooms();
     }, [userId]);
-    
+        
   return (
     <div >
         {chatRooms.map((room) => (

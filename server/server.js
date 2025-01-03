@@ -5,8 +5,14 @@ const cors = require('cors');
 require('dotenv').config();
 
 const chatRoutes = require('./routes/chatRoutes');
+const userMiddleware = (req, res, next) => {
+  // 固定的 userId
+  req.userId = 'Admin'; 
+  next();
+};
 
 const app = express();
+app.use(userMiddleware);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -14,15 +20,7 @@ const io = new Server(server, {
     credentials: true,
   },
 });
-// const pool = new Pool({
-//   user: process.env.DB_USER,
-//   host: process.env.DB_HOST,
-//   database: process.env.DB_NAME,
-//   password: process.env.DB_PASS,
-//   port: process.env.DB_PORT,
-// });
 
-//app.use(bodyParser.json());
 app.use(cors());
 app.use(express.json());
 app.use('/api', chatRoutes);

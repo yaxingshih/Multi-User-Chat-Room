@@ -1,0 +1,12 @@
+.chatRoom{
+    padding: 15px;
+    background-color: var(--first-color);
+    height: 100vh;
+    
+}
+.chatRoom__title{
+    color: var(--text-white);
+    font-family: var(--second-font);
+    font-size: var(--h2-font-size);
+    font-weight: var(--weight-600);
+}

@@ -14,3 +14,21 @@ export const fetchChatRooms = async (userId) => {
     throw error;
   }
 };
+export const fetchRoomDetails = async (roomId) => {
+    try {
+      const response = await apiClient.get(`/roomDetails/${roomId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching room details:', error);
+      throw error;
+    }
+};
+export const fetchChatMsg = async (roomId) => {
+    try {
+      const response = await apiClient.get(`/chatMsg/${roomId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching chat Msg:', error);
+      throw error;
+    }
+};
