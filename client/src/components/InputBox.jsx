@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import { FiSend } from 'react-icons/fi';
+import './inputBox.css'
 const InputBox = ({ onSend }) => {
   const [text, setText] = useState('');
 
@@ -16,9 +17,14 @@ const InputBox = ({ onSend }) => {
         type="text"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="輸入訊息..."
+        placeholder="type here..."
+        className='message__inputbox'
       />
-      <button onClick={handleSend}>發送</button>
+      <button onClick={handleSend} className='message__button'>
+        <span className="button__icon message__button-icon">
+          <FiSend />
+        </span>
+      </button>
     </div>
   );
 };

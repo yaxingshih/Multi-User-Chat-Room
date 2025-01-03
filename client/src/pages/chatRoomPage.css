@@ -1,5 +1,5 @@
 .chatRoom{
-    padding: 15px;
+    padding: 15px 50px;
     background-color: var(--first-color);
     height: 100vh;
     
@@ -9,4 +9,17 @@
     font-family: var(--second-font);
     font-size: var(--h2-font-size);
     font-weight: var(--weight-600);
+}
+.Message__List {
+    height: 70vh;
+    list-style-type: none;
+    width: 100%;
+    border-radius: 10px;
+    margin: 1rem auto;
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: left;
+    overflow: auto;
+    flex-grow: 1;
 }

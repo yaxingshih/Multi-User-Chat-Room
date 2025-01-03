@@ -2,6 +2,7 @@
     /* ========== Colors ========== */
     font-family: "Inter", sans-serif;
     --first-color: hsl(231, 48%, 48%);
+    --second-color:hsl(0, 0%, 87%);
     --title-color: hsl(0, 0%, 40%);
     --text-color: hsl(0, 0%, 50%);
     --body-color: hsl(0, 0%, 100%);

@@ -1,0 +1,30 @@
+.message__button {
+    display: inline-block;
+    color: var(--title-color);
+    border: 1px solid var(--title-color);
+    padding: 21px 50px;
+    border-radius: 35px;
+    font-family: var(--second-font);
+    font-size: var(--small-font-size);
+    font-weight: var(--weight-500);
+    position: absolute;
+    overflow: hidden;
+    right: 48px;
+    background: var(--title-color);
+}
+.message__button-icon{
+    position: absolute;
+    /* inset-block: -2px; */
+    right: 7px;
+    top: 13px;
+    width: 55px;
+    /* border-radius: 50%; */
+    color: var(--text-white);
+    font-size: var(--large-font-size);
+}
+.message__inputbox {
+    background-color: var(--body-color);
+    padding: 0.6rem;
+    border-radius: 20px;
+    width: 100%;
+}

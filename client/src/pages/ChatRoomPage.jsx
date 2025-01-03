@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { fetchRoomDetails } from '../api/api';
 import { fetchChatMsg } from '../api/api';
-import './chatRoomPage.css'
+import Message from '../components/Message';
+import InputBox from '../components/InputBox';
+import './chatRoomPage.css';
+
 const ChatRoomPage = ({ roomId }) => {
-  const [roomDetails, setRoomDetails] = React.useState([]);
+  const [roomDetails, setRoomDetails] = useState([]);
   
       const handleFetchRoomDetails = async () => {
           try {
@@ -14,11 +17,11 @@ const ChatRoomPage = ({ roomId }) => {
           }
       };
   
-      React.useEffect(() => {
+      useEffect(() => {
         handleFetchRoomDetails();
       }, [roomId]);
   
-    const [messages, setMessages] = React.useState([]);
+    const [messages, setMessages] = useState([]);
 
     const handleFetchChatMsg = async () => {
         try {
@@ -29,7 +32,7 @@ const ChatRoomPage = ({ roomId }) => {
         }
     };
   
-      React.useEffect(() => {
+      useEffect(() => {
         handleFetchChatMsg();
       }, [roomId]);
 
@@ -43,19 +46,14 @@ const ChatRoomPage = ({ roomId }) => {
         ))}
       </div>
       <div style={{ padding: "0.14rem", borderBottom: "1px solid var(--border-color)" }}></div>
-        {messages.map((msg) => (
-          <div key={msg.MSGID}>
-            <strong>{msg.UID}:</strong> {msg.MSG}
-          </div>
-        ))}
-      {/* "MSGID", 
-        "GroupID", 
-        "DTM", 
-        "UID", 
-        "MSG", 
-        "CLASS", 
-        "FormattedDTM", 
-        "DT" */}
+        <ul id="messages" class="Message__List">
+          {messages.map((item) => {
+              return (
+                <Message key={item.MSGID} {...item}/>
+              )
+          })}
+        </ul>
+        <InputBox/>
     </div>
   );
 };
